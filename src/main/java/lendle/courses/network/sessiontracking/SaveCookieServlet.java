@@ -13,6 +13,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import sun.security.provider.certpath.ResponderId;
 
 /**
  *
@@ -35,6 +37,11 @@ public class SaveCookieServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
         //建立 cookie 並且儲存
+        ///////////////////////////////////////////////////////////////
+        String food=request.getParameter("food");
+        Cookie cookie=new Cookie("food",food);
+        cookie.setMaxAge(24*60*60);
+        response.addCookie(cookie);
         ///////////////////////////////////////////////////////////////
         response.sendRedirect("cookie.jsp");
     }
